@@ -109,7 +109,31 @@
       "rating": 4
     },
     {
-      "id": "1009",
+      "id": "100",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Product Description",
+      "image": "gaming-set.jpg",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "inventoryStatus": "INSTOCK",
+      "rating": 3
+    },
+    {
+      "id": "10209",
+      "code": "cm230f032",
+      "name": "Gaming Set",
+      "description": "Product Description",
+      "image": "gaming-set.jpg",
+      "price": 299,
+      "category": "Electronics",
+      "quantity": 63,
+      "inventoryStatus": "INSTOCK",
+      "rating": 3
+    },
+    {
+      "id": "10109",
       "code": "cm230f032",
       "name": "Gaming Set",
       "description": "Product Description",

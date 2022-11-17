@@ -17,11 +17,16 @@ import "./App.css";
 const App = () => {
   const [products1, setProducts1] = useState(null);
   const [products2, setProducts2] = useState(null);
+  const [first2, setFirst2] = useState(0);
+  const [rows2, setRows2] = useState(10);
   // const [products3, setProducts3] = useState(null);
   // const [products4, setProducts4] = useState(null);
   // const [editingRows, setEditingRows] = useState({});
   const toast = useRef(null);
-
+  const onCustomPage2 = (event) => {
+    setFirst2(event.first);
+    setRows2(event.rows);
+  };
   const columns = [
     { field: "id", header: "Code" },
     { field: "like_count", header: "Name" },
@@ -192,6 +197,47 @@ const App = () => {
     }).format(rowData.price);
   };
 
+  const template2 = {
+    layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink NextPageLink",
+    RowsPerPageDropdown: (options) => {
+      const dropdownOptions = [
+        { label: 10, value: 10 },
+        { label: 20, value: 20 },
+        { label: 50, value: 50 },
+      ];
+
+      return (
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Items per page:{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
+        </React.Fragment>
+      );
+    },
+    CurrentPageReport: (options) => {
+      return (
+        <span
+          style={{
+            color: "var(--text-color)",
+            userSelect: "none",
+            width: "120px",
+            textAlign: "center",
+          }}
+        >
+          {options.first} - {options.last} of {options.totalRecords}
+        </span>
+      );
+    },
+  };
+
   return (
     <div className="datatable-editing-demo">
       <Toast ref={toast} />
@@ -206,6 +252,12 @@ const App = () => {
           editMode="cell"
           className="editable-cells-table"
           responsiveLayout="scroll"
+          paginator
+          paginatorTemplate={template2}
+          first={first2}
+          rows={rows2}
+          onPage={onCustomPage2}
+          paginatorClassName="justify-content-end"
         >
           {columns.map(({ field, header }) => {
             return (
